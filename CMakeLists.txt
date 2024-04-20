@@ -9,3 +9,5 @@ include(CHECK_INSOURCE_BUILD)
 set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(src bin)
+
+add_subdirectory(test)

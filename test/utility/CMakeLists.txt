@@ -1,0 +1,3 @@
+add_executable(publisher_test publisher_test.cpp)
+target_link_libraries(publisher_test PRIVATE utility_static)
+AddTests(publisher_test)
