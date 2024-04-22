@@ -1,4 +1,4 @@
-#include "model/stack.h"
+#include <model/stack.h>
 #include <utility/event_system_exception.h>
 #include <deque>
 #include <algorithm>
@@ -29,7 +29,12 @@ namespace model
 
     std::string StackEventPayload::name() const
     {
-        switch (_eventType)
+        return StackEventPayload::name(_eventType);
+    }
+
+    std::string StackEventPayload::name(EventType eventType)
+    {
+        switch (eventType)
         {
         case EventType::STACK_UPDATED:
             return "STACK_UPDATED";
@@ -148,6 +153,8 @@ namespace model
     Stack::Stack()
     {
         _pimpl = std::make_unique<Impl>(*this);
+        registerEvents({StackEventPayload::name(StackEventPayload::EventType::STACK_UPDATED),
+                        StackEventPayload::name(StackEventPayload::EventType::STACK_ERROR)});
     }
     // required by pimpl idiom, cannot =default
     Stack::~Stack()

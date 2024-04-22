@@ -24,6 +24,8 @@ namespace model
             NOT_ENOUGH_ELEMENTS,
         };
 
+        static std::string name(EventType eventType);
+
         StackEventPayload() = delete;
 
         explicit StackEventPayload(EventType eventType, std::optional<ErrorType> errorType)
