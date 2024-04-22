@@ -1,5 +1,5 @@
 add_library(utility_obj OBJECT
-    publisher.cpp subscriber.cpp
+    publisher.cpp subscriber.cpp tokenizer.cpp
 )
 
 # PUBLIC is needed here
@@ -9,18 +9,15 @@ target_include_directories(utility_obj PUBLIC
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-set(UTILITY_PUBLIC_HEADERS
-    "src/utility/include/utility/event_system_exception.h"
-    "src/utility/include/utility/publisher.h"
-    "src/utility/include/utility/subscriber.h"
-    )
-
 set_target_properties(utility_obj PROPERTIES
-    PUBLIC_HEADER ${UTILITY_PUBLIC_HEADERS}
+    PUBLIC_HEADER "src/utility/include/utility/event_system_exception.h;\
+    src/utility/include/utility/publisher.h;\
+    src/utility/include/utility/subscriber.h;\
+    src/utility/include/utility/tokenizer.h"
     POSITION_INDEPENDENT_CODE 1
 )
 
 add_library(utility_shared SHARED)
 target_link_libraries(utility_shared utility_obj)
 add_library(utility_static STATIC)
-target_link_libraries(utility_static utility_obj)
+target_link_libraries(utility_static PUBLIC utility_obj)

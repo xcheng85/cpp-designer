@@ -3,6 +3,7 @@
 #include <utility>
 #include <format>
 #include <utility/event_system_exception.h>
+#include <iostream>
 
 namespace utility
 {
@@ -37,11 +38,6 @@ namespace utility
     // Scott Meyer's const_cast() pattern
     const Publisher::Impl::Subscribers &Publisher::Impl::subscribers(const string &eventName) const
     {
-        return const_cast<const Publisher::Impl::Subscribers &>(as_const(*this).subscribers(eventName));
-    }
-
-    Publisher::Impl::Subscribers &Publisher::Impl::subscribers(const string &eventName)
-    {
         // find or count
         auto itr = _events.find(eventName);
         if (itr == _events.end())
@@ -49,6 +45,11 @@ namespace utility
             throw EventSystemException{format("{} is not supported", eventName)};
         }
         return itr->second;
+    }
+
+    Publisher::Impl::Subscribers &Publisher::Impl::subscribers(const string &eventName)
+    {
+        return const_cast<Publisher::Impl::Subscribers &>(as_const(*this).subscribers(eventName));
     }
 
     void Publisher::Impl::addEvent(shared_ptr<IEventPayload> payload) const
@@ -71,6 +72,7 @@ namespace utility
                 throw EventSystemException{std::format("{} already exists", event)};
             }
             // emplace version of unordered_map
+            std::cout << event << "\n";
             _events.emplace(event, Subscribers{});
         }
     }

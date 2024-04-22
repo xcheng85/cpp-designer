@@ -15,7 +15,7 @@ namespace utility
     class IEventPayload
     {
     public:
-        virtual ~IEventPayload();
+        virtual ~IEventPayload(){};
         virtual std::string name() const = 0;
     };
 
