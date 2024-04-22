@@ -66,6 +66,23 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "__nullptr": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "__hash_table": "cpp",
+        "__split_buffer": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "queue": "cpp",
+        "forward_list": "cpp",
+        "__locale": "cpp",
+        "locale": "cpp",
+        "iostream": "cpp",
+        "__node_handle": "cpp",
+        "stack": "cpp",
+        "fstream": "cpp",
+        "filesystem": "cpp",
+        "ios": "cpp",
+        "__bit_reference": "cpp",
+        "__string": "cpp",
+        "regex": "cpp"
     }
 }
